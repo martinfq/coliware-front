@@ -1,0 +1,54 @@
+.skills-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.skills-grid article {
+	padding: 1rem;
+	border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+	border-radius: 14px;
+	background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.soft-skills-buttons,
+.hard-skills-buttons {
+	display: flex;
+	gap: 0.55rem;
+	flex-wrap: wrap;
+}
+
+.soft-skill-btn,
+.hard-skill-btn {
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	padding: 0.38rem 0.8rem;
+	font-family: 'IBM Plex Mono', monospace;
+	font-size: 0.75rem;
+	background: transparent;
+	color: var(--ink);
+	cursor: pointer;
+}
+
+.soft-skill-btn.active,
+.hard-skill-btn.active {
+	background: var(--accent);
+	color: #ffffff;
+	border-color: var(--accent);
+}
+
+.soft-skill-description,
+.hard-skill-description {
+	margin-top: 0.75rem;
+	padding: 0.72rem 0.8rem;
+	border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+	border-radius: 12px;
+	background: color-mix(in srgb, var(--surface) 92%, transparent);
+	line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+	.skills-grid {
+		grid-template-columns: 1fr;
+	}
+}

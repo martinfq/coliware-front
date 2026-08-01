@@ -1,0 +1,10 @@
+---
+import BlogPostPage from '../../../components/blog/BlogPostPage.astro';
+import { getBlogPostStaticPaths } from '../../../components/blog/blog.data';
+
+export const getStaticPaths = getBlogPostStaticPaths;
+
+const { post, previousPost, nextPost } = Astro.props;
+---
+
+<BlogPostPage post={post} previousPost={previousPost} nextPost={nextPost} />

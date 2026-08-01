@@ -1,0 +1,120 @@
+---
+import type { ResumeLocale } from '../content';
+import './Trayectoria.css';
+import trayectoriaScript from './Trayectoria.js?url';
+import { careerContent } from './content';
+
+type Props = {
+	locale: ResumeLocale;
+	tabExperience: string;
+	tabProjects: string;
+	tabCertifications: string;
+};
+
+const { locale, tabExperience, tabProjects, tabCertifications } = Astro.props;
+const content = careerContent[locale];
+const experienceItems = content.experienceItems;
+const projectItems = content.projectItems;
+const certifications = content.certifications;
+const longIpsum =
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.';
+const certificationPreview =
+	content.experienceTitle === 'Experience'
+		? 'Brief summary of this certification and its practical focus.'
+		: 'Resumen breve de esta certificacion y su enfoque practico.';
+---
+
+<section class="tabs card reveal" data-tabs-root>
+	<header>
+		<p class="section-label">{content.experienceSectionLabel}</p>
+		<h3>Trayectoria</h3>
+	</header>
+	<nav class="tabs-nav" aria-label="Tabs de contenido">
+		<a href={`#${tabExperience}`} class="tab-link" data-tab-link={tabExperience}>{content.experienceTitle}</a>
+		<a href={`#${tabProjects}`} class="tab-link" data-tab-link={tabProjects}>{content.projectsTitle}</a>
+		<a href={`#${tabCertifications}`} class="tab-link" data-tab-link={tabCertifications}>{content.certTitle}</a>
+	</nav>
+
+	<section class="tab-panel" data-tab-panel={tabExperience}>
+		<div class="accordion-list" data-accordion-group>
+			{experienceItems.map((item, index) => (
+				<article class="accordion-item">
+					<button
+						type="button"
+						class="accordion-trigger"
+						data-accordion-trigger
+						aria-expanded="false"
+						aria-controls={`experience-content-${index}`}
+					>
+						<span class="accordion-head">
+							<span class="period">{item.period}</span>
+							<span class="accordion-title">{item.title}</span>
+							<span class="accordion-preview">{item.description}</span>
+						</span>
+						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
+					</button>
+					<div id={`experience-content-${index}`} class="accordion-content" data-accordion-content hidden>
+						<p>{longIpsum}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="tab-panel" data-tab-panel={tabProjects}>
+		<div class="accordion-list" data-accordion-group>
+			{projectItems.map((item, index) => (
+				<article class="accordion-item">
+					<button
+						type="button"
+						class="accordion-trigger"
+						data-accordion-trigger
+						aria-expanded="false"
+						aria-controls={`project-content-${index}`}
+					>
+						<span class="accordion-head">
+							<span class="accordion-title">{item.title}</span>
+							<span class="accordion-preview">{item.description}</span>
+						</span>
+						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
+					</button>
+					<div id={`project-content-${index}`} class="accordion-content" data-accordion-content hidden>
+						<p>{longIpsum}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="tab-panel" data-tab-panel={tabCertifications}>
+		<div class="accordion-list" data-accordion-group>
+			{certifications.map((item, index) => (
+				<article class="accordion-item">
+					<button
+						type="button"
+						class="accordion-trigger"
+						data-accordion-trigger
+						aria-expanded="false"
+						aria-controls={`certification-content-${index}`}
+					>
+						<span class="accordion-head">
+							<span class="accordion-title">{item}</span>
+							<span class="accordion-preview">{certificationPreview}</span>
+						</span>
+						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
+					</button>
+					<div
+						id={`certification-content-${index}`}
+						class="accordion-content"
+						data-accordion-content
+						hidden
+					>
+						<p>{longIpsum}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+</section>
+
+<script type="module" src={trayectoriaScript}></script>

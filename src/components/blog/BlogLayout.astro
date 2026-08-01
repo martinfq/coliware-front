@@ -1,0 +1,155 @@
+---
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="ambient-shape" aria-hidden="true"></div>
+		<div class="layout">
+			<header class="site-header">
+				<a href="/blog/" class="brand">codigo.oliva</a>
+				<nav>
+					<a href="/">Inicio</a>
+				</nav>
+			</header>
+			<main>
+				<slot />
+			</main>
+			<footer class="site-footer">
+				<p>Notas de programacion, arquitectura y practicas de desarrollo.</p>
+			</footer>
+		</div>
+	</body>
+</html>
+
+<style>
+	:root {
+		--olive-900: #242d16;
+		--olive-700: #3f4f28;
+		--olive-500: #657d44;
+		--ink-900: #0a0b08;
+		--ink-700: #21251b;
+		--paper: #f8f9f3;
+		--paper-soft: #eff2e5;
+		--line: #c3ccb1;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+		color: var(--ink-900);
+		background:
+			radial-gradient(circle at 82% 6%, rgba(101, 125, 68, 0.22), transparent 44%),
+			linear-gradient(180deg, #f9fbf5 0%, #f2f5e8 100%);
+		min-height: 100vh;
+	}
+
+	.ambient-shape {
+		position: fixed;
+		inset: auto -4rem -8rem auto;
+		width: min(44vw, 540px);
+		height: min(44vw, 540px);
+		background: radial-gradient(circle, rgba(36, 45, 22, 0.18), rgba(36, 45, 22, 0));
+		pointer-events: none;
+		filter: blur(8px);
+	}
+
+	.layout {
+		position: relative;
+		width: 100%;
+		padding: 1.25rem clamp(0.8rem, 2vw, 2rem) 2.5rem;
+	}
+
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.9rem 1rem;
+		border: 1px solid var(--line);
+		background: rgba(248, 249, 243, 0.92);
+		backdrop-filter: blur(4px);
+		animation: slide-down 0.5s ease-out;
+	}
+
+	.brand {
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.95rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--olive-900);
+		text-decoration: none;
+	}
+
+	.site-header nav a {
+		font-size: 0.88rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--ink-700);
+		border-bottom: 1px solid transparent;
+		transition: border-color 180ms ease, color 180ms ease;
+	}
+
+	.site-header nav a:hover {
+		color: var(--olive-700);
+		border-color: var(--olive-500);
+	}
+
+	main {
+		padding-top: 1.3rem;
+		width: 100%;
+	}
+
+	.site-footer {
+		margin-top: 2.2rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+		font-size: 0.85rem;
+		font-family: 'IBM Plex Mono', monospace;
+		color: var(--olive-700);
+	}
+
+	@keyframes slide-down {
+		from {
+			opacity: 0;
+			transform: translateY(-12px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.layout {
+			padding: 0.8rem 0.7rem 2rem;
+		}
+
+		.site-header {
+			padding: 0.8rem;
+		}
+	}
+</style>

@@ -1,0 +1,58 @@
+---
+import type { ResumeLocale } from '../content';
+import './Skills.css';
+import skillsScript from './Skills.js?url';
+import { skillsContent } from './content';
+
+type Props = {
+	locale: ResumeLocale;
+};
+
+const { locale } = Astro.props;
+const content = skillsContent[locale];
+const softSkills = content.softSkills;
+const hardSkills = content.hardSkills;
+---
+
+<section class="skills card reveal">
+	<header>
+		<p class="section-label">{content.skillsSectionLabel}</p>
+		<h3>{content.skillsTitle}</h3>
+	</header>
+	<div class="skills-grid">
+		<article class="soft-skills-card" data-soft-default-key={content.softSkillsDefaultKey}>
+			<h4>{content.softSkillsTitle}</h4>
+			<div class="soft-skills-buttons" data-soft-skills-buttons>
+				{softSkills.map((item) => (
+					<button
+						type="button"
+						class="soft-skill-btn"
+						data-soft-skill={item.key}
+						data-description={item.description}
+					>
+						{item.label}
+					</button>
+				))}
+			</div>
+			<p class="soft-skill-description" data-soft-skill-description></p>
+		</article>
+		<article class="hard-skills-card">
+			<h4>{content.hardSkillsTitle}</h4>
+			<div class="hard-skills-buttons" data-hard-skills-buttons>
+				{hardSkills.map((item) => (
+					<button
+						type="button"
+						class="hard-skill-btn"
+						data-hard-skill={item.key}
+						data-description={item.description}
+					>
+						{item.label}
+					</button>
+				))}
+			</div>
+			<p class="hard-skill-description" data-hard-skill-description></p>
+		</article>
+	</div>
+</section>
+
+<script type="module" src={skillsScript}></script>

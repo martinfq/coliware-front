@@ -1,0 +1,46 @@
+---
+import type { ResumeContent, ResumeLocale } from './content';
+
+type Props = {
+	locale: ResumeLocale;
+	content: ResumeContent;
+	esHref: string;
+	enHref: string;
+};
+
+const { locale, content, esHref, enHref } = Astro.props;
+---
+
+<div class="ambient" aria-hidden="true"></div>
+<header class="topbar">
+	<div class="topbar-inner">
+		<p class="brand">{content.brand}</p>
+		<div class="controls">
+			<nav class="lang-switch" aria-label={content.langAria}>
+				<a class={locale === 'es' ? 'active' : undefined} href={esHref}>ES</a>
+				<a class={locale === 'en' ? 'active' : undefined} href={enHref}>EN</a>
+			</nav>
+			<select class="lang-dropdown" data-lang-select aria-label={content.langAria}>
+				<option value={esHref} selected={locale === 'es'}>ES</option>
+				<option value={enHref} selected={locale === 'en'}>EN</option>
+			</select>
+			<button
+				class="theme-btn"
+				type="button"
+				data-theme-toggle
+				data-light-label={content.lightLabel}
+				data-dark-label={content.darkLabel}
+				aria-label={content.themeAria}
+			>
+				{content.themePrefix} <span data-theme-label>{content.darkLabel}</span>
+			</button>
+		</div>
+	</div>
+</header>
+
+<main class="cv">
+	<slot name="hero" />
+
+	<slot name="second" />
+	<slot name="third" />
+</main>

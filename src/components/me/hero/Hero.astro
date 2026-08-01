@@ -1,0 +1,42 @@
+---
+import type { ResumeLocale } from '../content';
+import './Hero.css';
+import { heroContent } from './content';
+
+type Props = {
+	locale: ResumeLocale;
+};
+
+const { locale } = Astro.props;
+const content = heroContent[locale];
+const profileSentences = content.profileText
+	.split(/(?<=[.!?])\s+/)
+	.map((item) => item.trim())
+	.filter(Boolean);
+const profileSplitIndex = Math.ceil(profileSentences.length / 2);
+const profileParagraphs =
+	profileSentences.length > 1
+		? [
+				profileSentences.slice(0, profileSplitIndex).join(' '),
+				profileSentences.slice(profileSplitIndex).join(' ')
+			]
+		: [content.profileText];
+---
+
+<section class="hero card reveal">
+	<p class="eyebrow">{content.eyebrow}</p>
+	<h1>Martin Fierro</h1>
+	<h2>{content.role}</h2>
+	<div class="hero-grid">
+		<article class="profile-block">
+			<h3>{content.profileTitle}</h3>
+			{profileParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+		</article>
+		<article class="contact-block">
+			<h3>{content.contactTitle}</h3>
+			<ul>
+				{content.contactItems.map((item) => <li>{item}</li>)}
+			</ul>
+		</article>
+	</div>
+</section>

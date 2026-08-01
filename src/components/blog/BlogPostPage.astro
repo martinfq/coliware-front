@@ -1,0 +1,214 @@
+---
+import BlogLayout from './BlogLayout.astro';
+import { render } from 'astro:content';
+import type { BlogPostEntry } from './blog.data';
+import { getBlogPostUrl } from './blog.data';
+
+interface Props {
+	post: BlogPostEntry;
+	previousPost: BlogPostEntry | null;
+	nextPost: BlogPostEntry | null;
+}
+
+const { post, previousPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+const dateFormatter = new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' });
+---
+
+<BlogLayout title={`${post.data.title} | Codigo Oliva`} description={post.data.description}>
+	<article class="post">
+		<a href="/blog/" class="back">Volver al blog</a>
+		<header>
+			<p>{dateFormatter.format(post.data.pubDate)}</p>
+			<h1>{post.data.title}</h1>
+			<p>{post.data.description}</p>
+		</header>
+
+		<div class="tags">
+			{post.data.tags.map((tag) => <span>{tag}</span>)}
+		</div>
+
+		<section class="content">
+			<Content />
+		</section>
+
+		<nav class="post-nav" aria-label="Navegacion entre entradas">
+			{
+				previousPost ? (
+					<a href={getBlogPostUrl(previousPost)} class="nav-card">
+						<small>Anterior</small>
+						<strong>{previousPost.data.title}</strong>
+					</a>
+				) : (
+					<span class="nav-card muted">No hay entrada anterior</span>
+				)
+			}
+			{
+				nextPost ? (
+					<a href={getBlogPostUrl(nextPost)} class="nav-card">
+						<small>Siguiente</small>
+						<strong>{nextPost.data.title}</strong>
+					</a>
+				) : (
+					<span class="nav-card muted">No hay entrada siguiente</span>
+				)
+			}
+		</nav>
+	</article>
+</BlogLayout>
+
+<style>
+	.post {
+		padding: clamp(1rem, 1.5vw, 1.6rem);
+		border: 1px solid #c3ccb1;
+		background: #f8f9f3;
+		animation: reveal 500ms ease-out;
+	}
+
+	.back {
+		display: inline-block;
+		font-size: 0.85rem;
+		font-family: 'IBM Plex Mono', monospace;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #3f4f28;
+		text-decoration: none;
+	}
+
+	header {
+		margin-top: 1rem;
+	}
+
+	header p {
+		margin: 0;
+		font-size: 0.82rem;
+		font-family: 'IBM Plex Mono', monospace;
+		color: #3f4f28;
+	}
+
+	header h1 {
+		margin: 0.45rem 0 0;
+		font-size: clamp(1.7rem, 5vw, 2.7rem);
+		line-height: 1.1;
+	}
+
+	header p:last-child {
+		margin-top: 0.6rem;
+		font-size: 1rem;
+		line-height: 1.55;
+		color: #21251b;
+	}
+
+	.tags {
+		margin-top: 1rem;
+		display: flex;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+	}
+
+	.tags span {
+		border: 1px solid #bcc7a8;
+		font-size: 0.75rem;
+		font-family: 'IBM Plex Mono', monospace;
+		padding: 0.2rem 0.5rem;
+		color: #3f4f28;
+	}
+
+	.content {
+		margin-top: 1.1rem;
+		line-height: 1.75;
+		font-size: 1.03rem;
+		max-width: 84ch;
+	}
+
+	.content :global(h2) {
+		margin: 2rem 0 0.8rem;
+		font-size: 1.45rem;
+		line-height: 1.2;
+	}
+
+	.content :global(p),
+	.content :global(ul),
+	.content :global(ol) {
+		margin: 0.9rem 0;
+	}
+
+	.content :global(code) {
+		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.94em;
+		background: #ecf1df;
+		padding: 0.15rem 0.35rem;
+	}
+
+	.content :global(pre) {
+		padding: 0.9rem;
+		background: #11140d;
+		color: #f8f9f3;
+		overflow-x: auto;
+	}
+
+	.content :global(pre code) {
+		padding: 0;
+		background: transparent;
+		color: inherit;
+	}
+
+	.post-nav {
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.7rem;
+	}
+
+	.nav-card {
+		display: grid;
+		gap: 0.22rem;
+		border: 1px solid #bcc7a8;
+		padding: 0.8rem;
+		color: #242d16;
+		text-decoration: none;
+		background: #f2f5e8;
+	}
+
+	.nav-card small {
+		font-family: 'IBM Plex Mono', monospace;
+		text-transform: uppercase;
+		font-size: 0.72rem;
+		letter-spacing: 0.05em;
+		color: #3f4f28;
+	}
+
+	.nav-card strong {
+		font-size: 0.94rem;
+		line-height: 1.3;
+	}
+
+	.nav-card:hover {
+		border-color: #657d44;
+	}
+
+	.nav-card.muted {
+		opacity: 0.6;
+	}
+
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 700px) {
+		.post {
+			padding: 1rem 0.85rem;
+		}
+
+		.post-nav {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

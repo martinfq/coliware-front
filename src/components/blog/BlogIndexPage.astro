@@ -1,0 +1,155 @@
+---
+import BlogLayout from './BlogLayout.astro';
+import { getBlogPosts, getBlogPostUrl } from './blog.data';
+
+const posts = await getBlogPosts();
+const dateFormatter = new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' });
+---
+
+<BlogLayout
+	title="Blog de Programacion | Codigo Oliva"
+	description="Blog de programacion con arquitectura de software, TypeScript y practicas de desarrollo moderno."
+>
+	<section class="hero">
+		<p class="chip">Blog de programacion</p>
+		<h1>Notas claras para construir software mantenible</h1>
+		<p>
+			Articulos tecnicos sobre arquitectura, testing y diseno de sistemas. Sin ruido, solo practicas
+			reproducibles.
+		</p>
+	</section>
+
+	<section class="grid" aria-label="Listado de entradas">
+		{
+			posts.map((post, index) => (
+				<article class="card" style={`animation-delay: ${120 + index * 80}ms`}>
+					<p class="meta">{dateFormatter.format(post.data.pubDate)}</p>
+					<h2>{post.data.title}</h2>
+					<p>{post.data.description}</p>
+					<ul>
+						{post.data.tags.map((tag) => <li>{tag}</li>)}
+					</ul>
+					<a href={getBlogPostUrl(post)}>Leer entrada</a>
+				</article>
+			))
+		}
+	</section>
+</BlogLayout>
+
+<style>
+	.hero {
+		padding: clamp(1rem, 1.5vw, 1.6rem);
+		border: 1px solid #c3ccb1;
+		background: linear-gradient(135deg, #f8f9f3 0%, #ebefdd 100%);
+		animation: reveal 550ms ease-out;
+	}
+
+	.chip {
+		display: inline-block;
+		margin: 0;
+		padding: 0.24rem 0.6rem;
+		font-size: 0.72rem;
+		font-family: 'IBM Plex Mono', monospace;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #3f4f28;
+		border: 1px solid #9bad84;
+	}
+
+	.hero h1 {
+		margin: 0.7rem 0 0;
+		font-size: clamp(1.8rem, 5vw, 3rem);
+		line-height: 1.05;
+		max-width: 24ch;
+	}
+
+	.hero p {
+		margin: 0.9rem 0 0;
+		max-width: 62ch;
+		color: #21251b;
+	}
+
+	.grid {
+		margin-top: 1rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.card {
+		padding: 1rem;
+		border: 1px solid #c3ccb1;
+		background: #f8f9f3;
+		display: grid;
+		gap: 0.65rem;
+		opacity: 0;
+		transform: translateY(10px);
+		animation: reveal 600ms ease forwards;
+	}
+
+	.card .meta {
+		margin: 0;
+		font-size: 0.8rem;
+		font-family: 'IBM Plex Mono', monospace;
+		color: #3f4f28;
+	}
+
+	.card h2 {
+		margin: 0;
+		font-size: 1.3rem;
+		line-height: 1.2;
+	}
+
+	.card p {
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.card ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		list-style: none;
+	}
+
+	.card li {
+		font-size: 0.75rem;
+		padding: 0.2rem 0.5rem;
+		border: 1px solid #bcc7a8;
+		color: #3f4f28;
+		font-family: 'IBM Plex Mono', monospace;
+	}
+
+	.card a {
+		justify-self: start;
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: #242d16;
+		text-decoration: none;
+		border-bottom: 1px solid #657d44;
+		padding-bottom: 0.05rem;
+	}
+
+	.card a:hover {
+		color: #657d44;
+	}
+
+	@keyframes reveal {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>
