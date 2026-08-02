@@ -16,8 +16,7 @@ export const heroContent: Record<ResumeLocale, HeroSectionContent> = {
 		profileTitle: 'Perfil',
 		profileText:
 			'Profesional proactivo apasionado por la tecnología, especialmente interesado en Back-End, DataOps, Arquitectura de Software, Inteligencia Artifical y Cloud. ' +
-			'Este enfoque multidisciplinar me ha proporcionado amplios conocimientos en diversas metodologías, arquitecturas, plataformas y lenguajes relevantes para mi campo. ' +
-			'Autodidacta, organizado, curioso y responsable, con gran capacidad de planificación y análisis. Puedo resolver cualquier problema de manera lógica y eficiente.',
+			'Este enfoque multidisciplinar me ha proporcionado amplios conocimientos en diversas metodologías, arquitecturas, plataformas y lenguajes relevantes para mi campo. ',
 		contactTitle: 'Contacto',
 		contactItems: [
 			'Email: martin.fq1908@gmail.com',
@@ -31,8 +30,7 @@ export const heroContent: Record<ResumeLocale, HeroSectionContent> = {
 		profileTitle: 'Profile',
 		profileText:
 			'Proactive professional passionate about technology, especially interested in Back-End, DataOps, Software Architecture, Artificial Intelligence, and Cloud. ' +
-			'This multidisciplinary approach has provided me with broad knowledge across methodologies, architectures, platforms, and languages relevant to my field. ' +
-			'Self-taught, organized, curious, and responsible, with strong planning and analytical skills. I can solve problems in a logical and efficient way.',
+			'This multidisciplinary approach has provided me with broad knowledge across methodologies, architectures, platforms, and languages relevant to my field. ',
 		contactTitle: 'Contact',
 		contactItems: [
 			'Email: martin.fq1908@gmail.com',

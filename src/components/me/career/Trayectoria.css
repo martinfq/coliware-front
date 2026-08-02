@@ -222,13 +222,15 @@ html[data-theme='light'] .project-link:focus-visible {
 
 @media (max-width: 900px) {
 	.experience-topline {
-		align-items: baseline;
-		flex-direction: row;
-		gap: 0.5rem;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 0.12rem;
 	}
 
 	.period {
 		font-size: 0.76rem;
+		margin-left: 0;
+		text-align: left;
 	}
 
 	.experience-company {
