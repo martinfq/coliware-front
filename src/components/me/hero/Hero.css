@@ -31,6 +31,30 @@ h2 {
 	color: var(--ink);
 }
 
+.job-link {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 140ms ease, opacity 140ms ease;
+}
+
+.job-link:hover,
+.job-link:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 0.16em;
+}
+
+.job-link.is-active {
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 0.16em;
+}
+
+.job-link:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
 .hero-grid {
 	margin-top: 1.6rem;
 	display: grid;
@@ -44,6 +68,17 @@ h2 {
 
 .profile-block p + p {
 	margin-top: 0.8rem;
+}
+
+.contact-block li::before {
+	content: none;
+	width: 0;
+	margin-left: 0;
+}
+
+.contact-block li {
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
 
 @media (max-width: 900px) {

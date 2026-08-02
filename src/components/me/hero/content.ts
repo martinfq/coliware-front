@@ -27,15 +27,17 @@ export const heroContent: Record<ResumeLocale, HeroSectionContent> = {
 	},
 	en: {
 		eyebrow: 'Resume',
-		role: 'Engineer (Software, Data, AI)',
+		role: 'Engineer X (Software, Data, AI)',
 		profileTitle: 'Profile',
 		profileText:
-			'Product and results oriented profile, focused on scalable systems design, data analytics, and practical AI solutions for real environments.',
+			'Proactive professional passionate about technology, especially interested in Back-End, DataOps, Software Architecture, Artificial Intelligence, and Cloud. ' +
+			'This multidisciplinary approach has provided me with broad knowledge across methodologies, architectures, platforms, and languages relevant to my field. ' +
+			'Self-taught, organized, curious, and responsible, with strong planning and analytical skills. I can solve problems in a logical and efficient way.',
 		contactTitle: 'Contact',
 		contactItems: [
-			'Email: martin@example.com',
+			'Email: martin.fq1908@gmail.com',
 			'LinkedIn: linkedin.com/in/martin-fierro',
-			'Location: Argentina'
+			'Location: Quito, Ecuador'
 		]
 	}
 };

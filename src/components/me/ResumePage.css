@@ -2,11 +2,11 @@
 	--ink: #ffffff;
 	--surface: rgba(9, 9, 12, 0.82);
 	--line: #2f2f39;
-	--accent: #c9a4ff;
-	--accent-soft: #dfceff;
+	--accent: #8a63cf;
+	--accent-soft: #cbb1f8;
 	--bg-a: #20122a;
 	--bg-b: #0d0d0f;
-	--dot: rgba(201, 164, 255, 0.1);
+	--dot: rgba(138, 99, 207, 0.14);
 }
 
 html[data-theme='light'] {
@@ -48,6 +48,7 @@ body {
 .topbar {
 	position: sticky;
 	top: 0;
+	width: 100%;
 	z-index: 9;
 	backdrop-filter: blur(10px);
 	background: color-mix(in srgb, var(--bg-b) 82%, transparent);
@@ -56,6 +57,7 @@ body {
 
 .topbar-inner {
 	display: flex;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	gap: 1rem;
@@ -192,15 +194,31 @@ li::before {
 
 @media (max-width: 900px) {
 	.topbar-inner {
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		gap: 0.6rem;
+		padding: 0.6rem 0.75rem;
 	}
 
-	.lang-switch {
-		display: none;
+	.controls {
+		width: auto;
+		justify-content: flex-end;
+		flex-wrap: nowrap;
+		gap: 0.4rem;
+	}
+
+	.brand {
+		font-size: 0.72rem;
+		letter-spacing: 0.06em;
+	}
+
+	.lang-switch a,
+	.theme-btn {
+		font-size: 0.68rem;
+		padding: 0.34rem 0.62rem;
 	}
 
 	.lang-dropdown {
-		display: inline-block;
+		display: none;
 	}
 
 	.cv {

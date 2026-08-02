@@ -43,7 +43,7 @@ const sharedContent: Record<ResumeLocale, SharedContent> = {
 	en: {
 		metaDescription: 'Martin Fierro Resume - Software, Data and AI Engineer',
 		title: 'Martin Fierro | Resume',
-		brand: 'Martin Fierro Resume',
+		brand: 'COLIWARE',
 		themePrefix: 'Theme:',
 		lightLabel: 'Light',
 		darkLabel: 'Dark',

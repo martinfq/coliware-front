@@ -21,16 +21,34 @@ const profileParagraphs =
 				profileSentences.slice(profileSplitIndex).join(' ')
 			]
 		: [content.profileText];
+const baseHighlightTerms =
+	locale === 'en'
+		? ['Software', 'Back-End', 'Software Architecture', 'Cloud']
+		: ['Software', 'Back-End', 'Arquitectura de Software', 'Cloud'];
+const highlightText = (text: string, terms: string[]) =>
+	terms.reduce((acc, term) => {
+		const pattern = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+		return acc.replace(pattern, '<strong><u>$1</u></strong>');
+	}, text);
+const profileHtml = profileParagraphs.map((paragraph) => highlightText(paragraph, baseHighlightTerms));
+const rolePrefix = locale === 'en' ? 'Engineer X' : 'Ingeniero X';
+const iaLabel = locale === 'en' ? 'AI' : 'IA';
 ---
 
 <section class="hero card reveal">
 	<p class="eyebrow">{content.eyebrow}</p>
 	<h1>Martin Fierro</h1>
-	<h2>{content.role}</h2>
+	<h2 data-job-role>
+		{rolePrefix} (
+		<a class="job-link is-active" data-job-link="software" href="?job=software">Software</a>,
+		<a class="job-link" data-job-link="data" href="?job=data">Data</a>,
+		<a class="job-link" data-job-link="ia" href="?job=ia">{iaLabel}</a>
+		)
+	</h2>
 	<div class="hero-grid">
 		<article class="profile-block">
 			<h3>{content.profileTitle}</h3>
-			{profileParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+			{profileHtml.map((paragraph) => <p data-profile-paragraph set:html={paragraph}></p>)}
 		</article>
 		<article class="contact-block">
 			<h3>{content.contactTitle}</h3>

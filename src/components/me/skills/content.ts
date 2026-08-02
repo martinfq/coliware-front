@@ -12,7 +12,7 @@ export type SkillsSectionContent = {
 	}>;
 	hardSkillsTitle: string;
 	hardSkills: Array<{
-		key: 'software' | 'data' | 'mlops' | 'cloud';
+		key: 'lenguages' | 'backend' | 'arquitectura' | 'dataops' | 'database' | 'cloud' | 'ia' | 'more';
 		label: string;
 		description: string;
 	}>;
@@ -20,7 +20,7 @@ export type SkillsSectionContent = {
 
 export const skillsContent: Record<ResumeLocale, SkillsSectionContent> = {
 	es: {
-		skillsSectionLabel: 'Diferente',
+		skillsSectionLabel: 'Colibri',
 		skillsTitle: 'Skills',
 		softSkillsTitle: 'Soft Skills',
 		softSkillsDefaultKey: 'autogestion',
@@ -53,33 +53,57 @@ export const skillsContent: Record<ResumeLocale, SkillsSectionContent> = {
 		hardSkillsTitle: 'Hard Skills',
 		hardSkills: [
 			{
-				key: 'software',
-				label: 'Software',
+				key: 'lenguages',
+				label: 'Lenguajes',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.'
+					'Java | Python | Js/Ts | SQL'
 			},
 			{
-				key: 'data',
-				label: 'Data',
+				key: 'backend',
+				label: 'Back-End',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue.'
+					'Node Js | Nest Js | Django | Flask | Docker | SpringBoot | API Rest'
 			},
 			{
-				key: 'mlops',
-				label: 'MLops',
+				key: 'arquitectura',
+				label: 'Arquitectura',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed.'
+					'Patrones de arquitectura | Patrones de diseño | Microservicios'
+			},
+			{
+				key: 'dataops',
+				label: 'DataOps',
+				description:
+					'PySpark | Stratio | AirFlow| Docker | DataOps'
+			},
+			{
+				key: 'database',
+				label: 'Base de Datos',
+				description:
+					'Postgres | Microsoft SQL Server | Firebase | MongoDB | Neo4j | Gobierno'
 			},
 			{
 				key: 'cloud',
 				label: 'Cloud',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis.'
+					'AWS | Google Cloud | Azure | Cloudflare'
+			},
+			{
+				key: 'ia',
+				label: 'IA',
+				description:
+					'LLMs | Embeddings | Machine Learning | Prompting | LangChain | RAG'
+			},
+			{
+				key: 'more',
+				label: 'Mas',
+				description:
+					'Git | Github | Jira | Scrum | Pruebas unitarias | Automatización de pruebas'
 			}
 		]
 	},
 	en: {
-		skillsSectionLabel: 'Second section',
+		skillsSectionLabel: 'Colibri',
 		skillsTitle: 'Soft Skills and Hard Skills',
 		softSkillsTitle: 'Soft Skills',
 		softSkillsDefaultKey: 'autogestion',
@@ -88,46 +112,75 @@ export const skillsContent: Record<ResumeLocale, SkillsSectionContent> = {
 				key: 'comunicacion',
 				label: 'Communication',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.'
+					'I communicate clearly and with a results-oriented approach, with the ability to explain technical ideas, frame problems in a structured way, and adapt information to the needs of the team and project.'
 			},
 			{
 				key: 'liderazgo',
 				label: 'Leadership',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.'
+					'Leadership focused on problem solving and decision making, driving projects in an organized way, promoting strong technical practices, and keeping the team focused on concrete goals and quality outcomes.'
 			},
 			{
 				key: 'autogestion',
 				label: 'Self-management',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.'
+					'I organize my tasks autonomously by prioritizing goals, researching solutions, and following projects through until expected outcomes are achieved.'
+			},
+			{
+				key: 'proactivo',
+				label: 'Proactive',
+				description:
+					'I take initiative to identify opportunities for improvement, anticipate potential problems, and find solutions independently, always focused on optimizing processes and achieving project goals.'
 			}
 		],
 		hardSkillsTitle: 'Hard Skills',
 		hardSkills: [
 			{
-				key: 'software',
-				label: 'Software',
+				key: 'lenguages',
+				label: 'Languages',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.'
+                    'Java | Python | Js/Ts | SQL'},
+			{
+				key: 'backend',
+				label: 'Back-End',
+				description:
+					'Node Js | Nest Js | Django | Flask | Docker | SpringBoot | API Rest'
 			},
 			{
-				key: 'data',
-				label: 'Data',
+				key: 'arquitectura',
+				label: 'Architecture',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue.'
+					'Architecture patterns | Design patterns | Microservices'
 			},
 			{
-				key: 'mlops',
-				label: 'MLops',
+				key: 'dataops',
+				label: 'DataOps',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed.'
+					'PySpark | Stratio | AirFlow | Docker | DataOps'
+			},
+			{
+				key: 'database',
+				label: 'Database',
+				description:
+					'Postgres | Microsoft SQL Server | Firebase | MongoDB | Neo4j | Governance'
 			},
 			{
 				key: 'cloud',
 				label: 'Cloud',
 				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis.'
+					'AWS | Google Cloud | Azure | Cloudflare'
+			},
+			{
+				key: 'ia',
+				label: 'AI',
+				description:
+					'LLMs | Embeddings | Machine Learning | Prompting | LangChain | RAG'
+			},
+			{
+				key: 'more',
+				label: 'More',
+				description:
+					'Git | Github | Jira | Scrum | Unit testing | Test automation'
 			}
 		]
 	}

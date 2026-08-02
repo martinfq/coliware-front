@@ -16,12 +16,7 @@ const content = careerContent[locale];
 const experienceItems = content.experienceItems;
 const projectItems = content.projectItems;
 const certifications = content.certifications;
-const longIpsum =
-	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.';
-const certificationPreview =
-	content.experienceTitle === 'Experience'
-		? 'Brief summary of this certification and its practical focus.'
-		: 'Resumen breve de esta certificacion y su enfoque practico.';
+const toRichText = (text: string) => text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 ---
 
 <section class="tabs card reveal" data-tabs-root>
@@ -38,7 +33,7 @@ const certificationPreview =
 	<section class="tab-panel" data-tab-panel={tabExperience}>
 		<div class="accordion-list" data-accordion-group>
 			{experienceItems.map((item, index) => (
-				<article class="accordion-item">
+				<article class="accordion-item" data-experience-item data-experience-index={index}>
 					<button
 						type="button"
 						class="accordion-trigger"
@@ -47,14 +42,25 @@ const certificationPreview =
 						aria-controls={`experience-content-${index}`}
 					>
 						<span class="accordion-head">
-							<span class="period">{item.period}</span>
-							<span class="accordion-title">{item.title}</span>
-							<span class="accordion-preview">{item.description}</span>
+							<span class="experience-topline">
+								<span class="accordion-title">{item.title}</span>
+								<span class="period">{item.period}</span>
+							</span>
+							<span class="experience-company">{item.company}</span>
+							<span class="experience-summary">{item.summary}</span>
 						</span>
 						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
 					</button>
 					<div id={`experience-content-${index}`} class="accordion-content" data-accordion-content hidden>
-						<p>{longIpsum}</p>
+						<div class="experience-keywords" aria-label="Palabras clave">
+							{item.keywords.map((keyword) => <span class="keyword-chip">{keyword}</span>)}
+						</div>
+						<ul class="experience-details" aria-label="Descripcion de responsabilidades">
+							{item.description.map((line) => (
+								<li class="experience-detail-item" set:html={toRichText(line)}></li>
+							))}
+						</ul>
+						<p class="experience-location">{item.location}</p>
 					</div>
 				</article>
 			))}
@@ -74,12 +80,30 @@ const certificationPreview =
 					>
 						<span class="accordion-head">
 							<span class="accordion-title">{item.title}</span>
-							<span class="accordion-preview">{item.description}</span>
+							<span class="project-summary">{item.summary}</span>
 						</span>
 						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
 					</button>
 					<div id={`project-content-${index}`} class="accordion-content" data-accordion-content hidden>
-						<p>{longIpsum}</p>
+						<div class="experience-keywords" aria-label="Palabras clave del proyecto">
+							{item.keywords.map((keyword) => <span class="keyword-chip">{keyword}</span>)}
+						</div>
+						<ul class="experience-details" aria-label="Descripcion del proyecto">
+							{item.description.map((line) => (
+								<li class="experience-detail-item" set:html={toRichText(line)}></li>
+							))}
+						</ul>
+						<div class="project-links" aria-label="Enlaces del proyecto">
+							{item.repository && (
+								<a class="project-link" href={item.repository} target="_blank" rel="noreferrer">Repository</a>
+							)}
+							{item.demo && (
+								<a class="project-link" href={item.demo} target="_blank" rel="noreferrer">Demo</a>
+							)}
+							{item.link && (
+								<a class="project-link" href={item.link} target="_blank" rel="noreferrer">Link</a>
+							)}
+						</div>
 					</div>
 				</article>
 			))}
@@ -98,8 +122,8 @@ const certificationPreview =
 						aria-controls={`certification-content-${index}`}
 					>
 						<span class="accordion-head">
-							<span class="accordion-title">{item}</span>
-							<span class="accordion-preview">{certificationPreview}</span>
+							<span class="accordion-title">{item.title}</span>
+							<span class="accordion-preview">{item.summary}</span>
 						</span>
 						<span class="accordion-icon" data-accordion-icon aria-hidden="true">▼</span>
 					</button>
@@ -109,7 +133,12 @@ const certificationPreview =
 						data-accordion-content
 						hidden
 					>
-						<p>{longIpsum}</p>
+						<p>{item.description}</p>
+						<div class="project-links" aria-label="Enlace de certificacion">
+							{item.link && (
+								<a class="project-link" href={item.link} target="_blank" rel="noreferrer">Link</a>
+							)}
+						</div>
 					</div>
 				</article>
 			))}
