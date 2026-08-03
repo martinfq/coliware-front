@@ -101,6 +101,21 @@ export const careerContent: Record<ResumeLocale, CareerSectionContent> = {
 		projectsTitle: 'Proyectos personales',
 		projectItems: [
 			{
+				title: 'Gestión de gastos personales con IA',
+				summary: 'Sistema mobile con IA para gestionar tus datos personales.',
+				keywords: ['Python', 'Go Lang', 'IA', 'AWS', 'Postgres', 'Kotlin', 'Swift', 'Meta API'],
+				description: [
+					'**IA:** Se desarrollo un OCR para detectar diferentes facturas, recibos y transferencias. Además de un bot de whatsapp.',
+					'**Backend:** Se realizo un backend en go que centralize toda la logica de negocio y sirva la API. Implementado en AWS EC2.',
+					'**DevOps:** Flujo CI/CD para despliegues.',
+					'**DB:** Postgres RDS AWS.',
+					'**Mobile:** Aplicación nativa con kotlin multiplatform Android e IOs.'
+
+				],
+				link: 'https://coliware.com/chiroai/',
+				repository: 'https://github.com/martinfq/FastAPI-CHIROAI'
+			},
+			{
 				title: 'Prediccion de Diabetes',
 				summary: 'Sistema full stack con IA para estimar probabilidad de diabetes a partir de datos de salud.',
 				keywords: ['Python', 'Flask', 'IA', 'JavaScript', 'ViteJS', 'React', 'Neo4J', 'Google Cloud'],
@@ -127,6 +142,12 @@ export const careerContent: Record<ResumeLocale, CareerSectionContent> = {
 		certSectionLabel: 'Quinta seccion',
 		certTitle: 'Certificaciones',
 		certifications: [
+			{
+				title: 'Microsoft AI-900',
+				summary: 'Fundamentos de IA y sus aplicaciones utilizando Microsoft Azure.',
+				description:
+					'He adquirido conocimientos fundamentales de los conceptos de IA, incluyendo aprendizaje automático, procesamiento de lenguaje natural y visión por computadora, utilizando los servicios de Microsoft Azure. Esta certificación valida mi comprensión de las cargas de trabajo y consideraciones de IA, así como la capacidad de implementar soluciones de IA en Azure.'
+			},
 			{
 				title: 'Stratio',
 				summary: 'Herramienta de bigdata para ingesta, procesamiento, guardado y gobierno de datos.',
@@ -220,6 +241,21 @@ export const careerContent: Record<ResumeLocale, CareerSectionContent> = {
 		projectsTitle: 'Personal projects',
 		projectItems: [
 			{
+				title: 'Managing personal expenses with AI',
+				summary: 'Mobile system with AI to manage your personal data.',
+				keywords: ['Python', 'Go Lang', 'IA', 'AWS', 'Postgres', 'Kotlin', 'Swift', 'Meta API'],
+				description: [
+					'**AI:** An OCR was developed to detect different invoices, receipts, and transfers. In addition to a WhatsApp bot.',
+					'**Backend:** A backend was implemented in Go that centralizes all business logic and serves the API. Deployed on AWS EC2.',
+					'**DevOps:** CI/CD workflow for deployments.',
+					'**DB:** Postgres RDS AWS.',
+					'**Mobile:** Native application with Kotlin Multiplatform for Android and iOS.'
+
+				],
+				link: 'https://coliware.com/chiroai/',
+				repository: 'https://github.com/martinfq/FastAPI-CHIROAI'
+			},
+			{
 				title: 'Diabetes Prediction',
 				summary: 'Full-stack AI system to estimate diabetes probability based on health data.',
 				keywords: ['Python', 'Flask', 'AI', 'JavaScript', 'ViteJS', 'React', 'Neo4J', 'Google Cloud'],
@@ -246,6 +282,12 @@ export const careerContent: Record<ResumeLocale, CareerSectionContent> = {
 		certSectionLabel: 'Fifth section',
 		certTitle: 'Certifications',
 		certifications: [
+			{
+				title: 'Microsoft AI-900',
+				summary: 'Fundamentals of AI and its applications using Microsoft Azure.',
+				description:
+					'I have acquired foundational knowledge of AI concepts, including machine learning, natural language processing, and computer vision, using Microsoft Azure services. This certification validates my understanding of AI workloads and considerations, as well as the ability to implement AI solutions on Azure.'
+			},
 			{
 				title: 'Stratio',
 				summary: 'Big data platform for ingestion, processing, storage, and data governance.',
