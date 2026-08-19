@@ -1,19 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import section1Image from './images/section1.jpeg';
+import section2Image from './images/section2.jpeg';
+import section3Image from './images/section3.jpeg';
+---
+
 <section class="how section-block" id="como-funciona">
 	<div class="container">
 		<h2>Registra tus gastos sin esfuerzo</h2>
 		<p class="lead">Paga y deja que Chiro haga el resto.</p>
 		<div class="steps">
 			<article class="step-card">
+				<div class="step-media">
+					<Image src={section1Image} alt="Pago y comprobante de gasto" width={640} height={420} loading="lazy" />
+				</div>
 				<span class="step-index">01</span>
 				<h3>Realizas un pago</h3>
 				<p>Haces una transferencia o compra y recibes tu comprobante.</p>
 			</article>
 			<article class="step-card">
+				<div class="step-media">
+					<Image src={section2Image} alt="Enviar comprobante por WhatsApp o Telegram" width={640} height={420} loading="lazy" />
+				</div>
 				<span class="step-index">02</span>
 				<h3>Comparte el comprobante</h3>
 				<p>Lo envias por WhatsApp o Telegram en lugar de llenar formularios manuales.</p>
 			</article>
 			<article class="step-card">
+				<div class="step-media">
+					<Image src={section3Image} alt="IA organizando tus finanzas" width={640} height={420} loading="lazy" />
+				</div>
 				<span class="step-index">03</span>
 				<h3>Chiro organiza todo</h3>
 				<p>
