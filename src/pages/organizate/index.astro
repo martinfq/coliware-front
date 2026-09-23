@@ -1,0 +1,189 @@
+---
+import "../../components/organizate/organizate.css";
+import organizateScript from "../../components/organizate/organizate.js?url";
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Organizate - CRUD de tareas</title>
+		<meta
+			name="description"
+			content="CRUD de tareas con prioridad manual, persistido en localStorage."
+		/>
+	</head>
+	<body>
+		<main class="tasks-app">
+			<section class="hero">
+				<p class="eyebrow">Organizate</p>
+				<h1>CRUD de Tareas</h1>
+				<p class="subtitle">
+					Registra, edita y elimina tareas. Los datos se guardan en tu navegador con
+					localStorage.
+				</p>
+			</section>
+
+			<section class="card form-card" aria-labelledby="objective-form-title">
+				<div class="card-head">
+					<h2 id="objective-form-title">Objetivos</h2>
+					<p>CRUD de objetivos. Cada tarea debe pertenecer a un objetivo.</p>
+				</div>
+
+				<form id="objective-form" class="task-form" novalidate>
+					<input type="hidden" id="objective-id" name="objectiveId" />
+
+					<div class="field">
+						<label for="objective-name">Nombre del objetivo</label>
+						<input
+							id="objective-name"
+							name="objectiveName"
+							type="text"
+							placeholder="Ej: Mejorar salud financiera"
+							required
+						/>
+					</div>
+
+					<div class="field">
+						<label for="objective-benefit">Beneficio</label>
+						<select id="objective-benefit" name="objectiveBenefit" required>
+							<option value="">Selecciona</option>
+							<option value="Alto">Alto</option>
+							<option value="Medio">Medio</option>
+							<option value="Bajo">Bajo</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="objective-priority">Prioridad</label>
+						<select id="objective-priority" name="objectivePriority" required>
+							<option value="">Selecciona una prioridad</option>
+							<option value="🔥 Alta">🔥 Alta</option>
+							<option value="🟡 Media">🟡 Media</option>
+							<option value="🟢 Baja">🟢 Baja</option>
+						</select>
+					</div>
+
+					<div class="actions field-full">
+						<button type="submit" id="objective-submit-button" class="btn btn-primary">Guardar objetivo</button>
+						<button type="button" id="objective-cancel-edit" class="btn btn-ghost" hidden>Cancelar edición</button>
+					</div>
+				</form>
+
+				<div class="table-wrap">
+					<table>
+						<thead>
+							<tr>
+								<th>Objetivo</th>
+								<th>Beneficio</th>
+								<th>Prioridad</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody id="objective-table-body"></tbody>
+					</table>
+				</div>
+				<p id="objective-empty-state" class="empty-state" hidden>No hay objetivos todavía.</p>
+			</section>
+
+			<section class="card form-card" aria-labelledby="task-form-title">
+				<div class="card-head">
+					<h2 id="task-form-title">Nueva tarea</h2>
+					<p>Campos requeridos: Objetivo, Tarea, Importancia, Urgencia, Esfuerzo y Tiempo.</p>
+				</div>
+
+				<form id="task-form" class="task-form" novalidate>
+					<input type="hidden" id="task-id" name="taskId" />
+
+					<div class="field field-full">
+						<label for="objective-select">Objetivo</label>
+						<select id="objective-select" name="objectiveId" required>
+							<option value="">Selecciona un objetivo</option>
+						</select>
+					</div>
+
+					<div class="field field-full">
+						<label for="task">Tarea</label>
+						<input id="task" name="task" type="text" placeholder="Ej: Estudiar Angular" required />
+					</div>
+
+					<div class="field">
+						<label for="importance">Importancia</label>
+						<select id="importance" name="importance" required>
+							<option value="">Selecciona</option>
+							<option value="Sí">Sí</option>
+							<option value="No">No</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="urgency">Urgencia</label>
+						<select id="urgency" name="urgency" required>
+							<option value="">Selecciona</option>
+							<option value="Sí">Sí</option>
+							<option value="No">No</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="effort">Esfuerzo</label>
+						<select id="effort" name="effort" required>
+							<option value="">Selecciona (1 a 3)</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="time">Tiempo</label>
+						<select id="time" name="time" required>
+							<option value="">Selecciona un tiempo</option>
+							<option value="5 min">5 min</option>
+							<option value="1 hora">1 hora</option>
+							<option value="varias horas">varias horas</option>
+							<option value="indeterminado">indeterminado</option>
+						</select>
+					</div>
+
+					<div class="actions field-full">
+						<button type="submit" id="submit-button" class="btn btn-primary">Guardar tarea</button>
+						<button type="button" id="cancel-edit" class="btn btn-ghost" hidden>Cancelar edición</button>
+					</div>
+				</form>
+			</section>
+
+			<section class="card table-card" aria-labelledby="task-table-title">
+				<div class="card-head table-head">
+					<h2 id="task-table-title">Lista de tareas</h2>
+					<button type="button" id="clear-all" class="btn btn-danger">Eliminar todo</button>
+				</div>
+
+				<div class="table-wrap">
+					<table>
+						<thead>
+							<tr>
+								<th>Tarea</th>
+								<th>Objetivo</th>
+								<th>Importancia</th>
+								<th>Urgencia</th>
+								<th>Beneficio</th>
+								<th>Esfuerzo</th>
+								<th>Tiempo</th>
+								<th>Prioridad</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody id="task-table-body"></tbody>
+					</table>
+				</div>
+				<p id="empty-state" class="empty-state" hidden>No hay tareas todavía.</p>
+			</section>
+		</main>
+
+		<script type="module" src={organizateScript}></script>
+	</body>
+</html>
